@@ -74,6 +74,8 @@ function mergeAllDuplicatedPatientFolders(){
 }
 
 function informGoogleDriveFolderIdOnUnivittaContacts(){
+  const { UnivittaContacts } = UnivittaContactsLib;
+
   let parentFolder = DriveApp.getFolderById(ALL_PATIENTS_FOLDER_ID);
   let childFolderIterator = parentFolder.getFolders();
 
@@ -86,7 +88,8 @@ function informGoogleDriveFolderIdOnUnivittaContacts(){
       let patientERow = UnivittaContacts.getPatientERowByFeegowId(patientId);
 
       if(patientERow){
-        patientERow.set("Pasta Google Drive ID", childFolder.getId()).save();
+        patientERow.setGoogleFolderId(childFolder.getId())
+          .save();
       }
     }
   }
