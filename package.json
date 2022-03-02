@@ -1,0 +1,63 @@
+{
+  "name": "univitta-automation",
+  "version": "3.0.0",
+  "univitta-apps-scripts": {
+    "util" : "1.1.1",
+    "erow" : "1.1.0",
+    "feegow-api": "1.0.0"
+  },
+  "scripts": {
+    "m-push": "copy-files-from-to && clasp push"
+  },
+  "author": "rickmatias",
+  "copyFiles": [
+    {
+      "from": [
+        "../util/_Index.js",
+        "../util/Date.js",
+        "../util/SpreadsheetApp.js",
+        "../util/Vars.js",
+        "../util/ScriptApp.js",
+        "../util/Form.js",
+        "../util/Telefone.js",
+        "../util/String.js",
+        "../util/MD5.js",
+        "../util/GmailApp.js",
+        "../util/Drive.js",
+        "../util/Triggers Criation.js"
+      ],
+      "to": "__libs/util/"
+    },
+    {
+      "from": [
+        "../erow/ERow.js",
+        "../erow/ERowException.js"
+      ],
+      "to": "__libs/erow/"
+    },
+    {
+      "from": [
+        "../feegow-api/FeegowAPI.js"
+      ],
+      "to": "__libs/feegow-api/"
+    }
+  ],
+  "copyFilesSettings": {
+    "whenFileExists": "overwrite",
+    "removeSourceMappingURL": false,
+    "uglifyJs": false,
+    "addReferenceToSourceOfOrigin": false,
+    "ignoreDotFilesAndFolders": false
+  },
+  "description": "Módulo que lida com automações na planilha de contatos da Univitta",
+  "main": "Automation.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rickmatias/univitta-contacts.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rickmatias/univitta-contacts/issues"
+  },
+  "homepage": "https://github.com/rickmatias/univitta-contacts#readme"
+}

@@ -1,0 +1,56 @@
+{
+  "timeZone": "America/Maceio",
+  "dependencies": {
+    "libraries": [{
+      "userSymbol" : "UnivittaContactsLib",
+      "libraryId" : "1xSvPB0UidFBfT-l82VRkl7y0Yc7YxmQ4lBYx0zryqAY2fcq2wtKQgWSO",
+      "version" : "8",
+      "developmentMode" : false
+    },{
+      "userSymbol" : "UnivittaMessengerLib",
+      "libraryId" : "19c3AsM0jQ0fegAXyKOoi15Sf2MCqDlLOp2bkaB8mSVw_bexHK8T5Sdiz",
+      "version" : "161",
+      "developmentMode" : false
+    },{
+      "userSymbol" : "ProposalAppLib",
+      "libraryId" : "1XJMtxWbZjuX1CnYiJyN8v0ZtpYA07t_QTf72JhDTYGdbSZbLQEMeGdnm",
+      "version" : "39",
+      "developmentMode" : false
+    },{
+      "userSymbol" : "TrellinatorLib",
+      "libraryId" : "1SEfJq6g3ycEZZTeVtQfk664ne-0bZk-CkoAJ89_08h7ka10hUEFHj5-W",
+      "version" : "107",
+      "developmentMode" : false
+    },{
+      "userSymbol" : "SheetMirrorNoWhatsapp",
+      "libraryId" : "11-SJNrQKPA5PsETYk9h6PS7M2ma2FodswZQs4FEaFDoQjpgoRHjSroDi",
+      "version" : "1",
+      "developmentMode" : true
+    },
+    {
+      "userSymbol" : "SheetMirrorContactWithPacient",
+      "libraryId" : "1LT_mT0HqGlQdWesy5KVZ92UciihDxleJXDVYS3p7fE2e7MpjBhAtuv4O",
+      "version" : "1",
+      "developmentMode" : true
+    }]
+  },
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8",
+  "executionApi": {
+    "access": "ANYONE"
+  },
+  "oauthScopes" : [
+    "https://www.google.com/m8/feeds",
+    "https://mail.google.com/",
+    "https://www.googleapis.com/auth/drive",
+    "https://www.googleapis.com/auth/script.container.ui",
+    "https://www.googleapis.com/auth/script.external_request",
+    "https://www.googleapis.com/auth/script.scriptapp",
+    "https://www.googleapis.com/auth/script.send_mail",
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/forms",
+    "https://www.googleapis.com/auth/forms.currentonly",
+    "https://www.googleapis.com/auth/gmail.send",
+    "https://www.googleapis.com/auth/documents"
+  ]
+}
