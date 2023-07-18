@@ -4,8 +4,7 @@
  * líderes e funcionários da Univitta
  */
 function createRoutineTasks(){
-  const { Trellinator, Board, Card, Member } = TrellinatorLib;
-  const sheetRoutines = Util.fastGetSheet(TASKS_SS_ID, ROUTINES_TAB_NAME);
+  const sheetRoutines = Util.fastGetSheetBySpreadsheetIdAndSheetName(TASKS_SS_ID, ROUTINES_TAB_NAME);
   const today = Trellinator.now();
   today.setMinutes(0);
   const hour = today.stringFormat('HH:MM');
@@ -15,27 +14,27 @@ function createRoutineTasks(){
   const weekDayPTmin = Util.getWeekDay(today).substr(0,3);
   const todayStr = today.toLocaleString('pt-BR', {dateStyle: 'short'}).replace(/\/[\d]{4}$/, '');
   const patternDay = new RegExp('(^|;)' + (today.getDate() + '').padStart(2, '0') + '($|;)');
-  const holidays = getHolidays_();
+  const hollidays = getHolidays_();
 
-  const condition = eRow => {
+  const condition = r => {
     return (
-      eRow.get("Ativo?")                         &&
-      eRow.get("Horários")                       &&
-      eRow.get("Horários").match(hour)           &&
+      r['Ativo?']                         &&
+      r['Horários']                       &&
+      r['Horários'].match(hour)           &&
       (
-        eRow.get("Feriados")                     ||
-        !holidays.includes(todayStr)
-      )                                          &&
-      eRow.get("Dias")                           &&
+        r['Feriados']                     ||
+        !hollidays.includes(todayStr)
+      )                                   &&
+      r['Dias']                           &&  
       (
-        eRow.get("Dias").match(weekDayPTmin)     ||
-        eRow.get("Dias").match(todayStr)         ||
-        eRow.get("Dias").match(patternDay)
+        r['Dias'].match(weekDayPTmin)     ||
+        r['Dias'].match(todayStr)         ||
+        r['Dias'].match(patternDay)
       )
     );
   }
 
-  const eRows = ERow.getERowsByCondition(sheetRoutines, condition);
+  const eRows = EloquentRow.getEloquentRowsByCondition(sheetRoutines, condition);
 
   eRows.forEach(eRow => {
     try{
@@ -63,7 +62,7 @@ function createRoutineTasks(){
       try{
         card = list.card(pattern);
         card.postComment(
-          '@card, acredito que esse cartão já deveria ter sido concluído, pois fui ' +
+          '@card, acredito que esse cartão já deveria ter sido concluído, pois fui ' + 
           'programado para criar um novo cartão com o mesmo título que esse.\n' +
           'OBS: se achar que isso é um erro, por favor, informe a gestão.'
         );
@@ -125,7 +124,6 @@ function createRoutineTasks(){
  * @returns {TrellinatorCore.IterableCollection}
  */
 function getListOfMembers_(members){
-  const {IterableCollection} = TrellinatorLib;
   if(members.match(/\+/)){
     return new IterableCollection(members.split('+'));
   }else if(members.match(/\|\|/)){
@@ -140,8 +138,8 @@ function getListOfMembers_(members){
  * @returns {string[]} Um array de strings com as datas dos feriados no formato 'DD/MM'
  */
 function getHolidays_(){
-  const sheetHolidays = Util.fastGetSheet(TASKS_SS_ID, HOLIDAYS_TAB_NAME);
-  return Util.getRowsAsObjectsByCondition(sheetHolidays, r => r['Data'])
+  const sheetHolidays = Util.fastGetSheetBySpreadsheetIdAndSheetName(TASKS_SS_ID, HOLIDAYS_TAB_NAME);
+  return Util.getRowsAsObjectsByCondiction(sheetHolidays, r => r['Data'])
   .map(rowObject => rowObject['Data']);
 }
 

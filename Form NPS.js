@@ -22,9 +22,9 @@ function formNPSSubmitHandler(e){
   }
 
   if(points >= 7){
-    let contactERows = UnivittaContacts.getContactERowRowByHashCode(hash);
+    let contactERows = UnivittaContacts.getContactEloquentRowByHashCode(hash);
     contactERows = contactERows.filter(function(c){
-      return !Util.isEmpty(c.getFeegowId());
+      return !Util.isEmpty(c.get("Feegow ID"));
     });
     let len = contactERows.length;
 
@@ -42,7 +42,7 @@ function formNPSSubmitHandler(e){
           services.map(c => {
             if(c.status_id == FeegowAPI.Status.ATTENDED){
               let obj = c;
-              obj.date = Util.getDateFromString(c.data);
+              obj.date = Util.getDataDeString(c.data);
               arrOfServices.push(obj);
             }
           });

@@ -87,7 +87,7 @@ function processFormCOVIDTestResponse(formResponse){
     };
 
     if(isSymptomatic){
-      const symptomsStart = Util.getDateFromString(formResponseObj["Quando seus sintomas se iniciaram?"]);
+      const symptomsStart = Util.getDataDeString(formResponseObj["Quando seus sintomas se iniciaram?"]);
 
       const daysSinceSymptomsStart = today.getDate() - symptomsStart.getDate();
 
@@ -117,7 +117,7 @@ function processFormCOVIDTestResponse(formResponse){
       const personHadContactWithSickPeople = formResponseObj["Por que você quer fazer o teste?"].match(/Tive contato/) ? true : false;
 
       if(personHadContactWithSickPeople){
-        const contactDate = Util.getDateFromString(formResponseObj["Quando foi o contato com a pessoa infectada?"]);
+        const contactDate = Util.getDataDeString(formResponseObj["Quando foi o contato com a pessoa infectada?"]);
         const daysSinceContact = today.getDate() - contactDate.getDate();
 
         if(daysSinceContact < 0){

@@ -29,7 +29,7 @@ function formUnivittaMonitoringSubmitHandler(e){
 
     //Testa se já existe uma inscrição ativa para o email informado
     let hasSameEmail = c => c["E-mail"] == respondentEmail && Util.isEmpty(c["Data de conclusão"]);
-    let eRows = ERowRow.getERowRowsByCondition(sheetRegistrations, hasSameEmail);
+    let eRows = EloquentRow.getEloquentRowsByCondition(sheetRegistrations, hasSameEmail);
 
     if(eRows.length){
       throw "Já existe uma inscrição ativa para o email "+respondentEmail+".";
@@ -41,7 +41,7 @@ function formUnivittaMonitoringSubmitHandler(e){
       let patient = FeegowAPI.getPatientById(feegowId);
 
       if(patient){
-        let birthDateOnFeegow = Util.getDateFromString(patient.nascimento);
+        let birthDateOnFeegow = Util.getDataDeString(patient.nascimento);
         let birthDateOnFeegowStr = Util.getDateFormated(birthDateOnFeegow, "dd/mm/YYYY");
         let birtDateOnFormStr = Util.getDateFormated(birthDateOnForm, "dd/mm/YYYY");
         let fullNameOnFeegow = patient.nome;
@@ -65,7 +65,7 @@ function formUnivittaMonitoringSubmitHandler(e){
       }
     }
 
-    new ERowRow(sheetRegistrations.getParent().getId(), sheetRegistrations.getName())
+    new EloquentRow(sheetRegistrations.getParent().getId(), sheetRegistrations.getName())
       .set("Data de inscrição", formResponse.getTimestamp())
       .set("Nome completo", fullNameOnForm)
       .set("Número de prontuário", feegowId)
